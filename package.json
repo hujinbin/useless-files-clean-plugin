@@ -1,0 +1,24 @@
+{
+  "name": "useless-files-clean-plugin",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "dev": "tsc -w -p . --incremental --skipLibCheck",
+    "build": "rm -rf dist && tsc -p . --skipLibCheck",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hujinbin/useless-files-clean-plugin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hujinbin/useless-files-clean-plugin/issues"
+  },
+  "homepage": "https://github.com/hujinbin/useless-files-clean-plugin#readme"
+}
