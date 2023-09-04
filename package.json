@@ -20,5 +20,14 @@
   "bugs": {
     "url": "https://github.com/hujinbin/useless-files-clean-plugin/issues"
   },
-  "homepage": "https://github.com/hujinbin/useless-files-clean-plugin#readme"
+  "homepage": "https://github.com/hujinbin/useless-files-clean-plugin#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "glob": "^10.3.4",
+    "path": "^0.12.7",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.9"
+  }
 }
