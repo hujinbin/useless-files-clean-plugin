@@ -25,7 +25,8 @@
     "fs": "^0.0.1-security",
     "glob": "^10.3.4",
     "path": "^0.12.7",
-    "shelljs": "^0.8.5"
+    "shelljs": "^0.8.5",
+    "webpack": "^4.47.0"
   },
   "devDependencies": {
     "@types/node": "^20.5.9"

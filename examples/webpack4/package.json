@@ -1,5 +1,5 @@
 {
-  "name": "webpack1",
+  "name": "webpack4",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "webpack": "^3.12.0"
+    "webpack": "^4.47.0"
   }
 }
