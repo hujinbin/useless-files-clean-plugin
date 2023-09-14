@@ -1,17 +1,18 @@
 var path = require("path");
-var webpack = require("webpack");
+const UselessFilesCleanPlugin = require('../../lib/index')
 
 module.exports = {
-	// mode: "development" || "production",
+	mode: "development" || "production",
 	resolve: {
 		extensions: [".js", ".jsx"]
 	},
 	entry: {
-		
+		app: './src/main.js',
 	},
 	output: {
 		path: path.join(__dirname, "dist"),
 	},
 	plugins: [
+		new UselessFilesCleanPlugin()
 	]
 };

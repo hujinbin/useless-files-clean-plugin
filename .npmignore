@@ -3,7 +3,6 @@ config/
 src/
 static/
 test/
-node_modules/
 playground/
 .babelrc
 .editorconfig
@@ -11,3 +10,4 @@ playground/
 .postcssrc.js
 index.html
 package-lock.json
+examples/

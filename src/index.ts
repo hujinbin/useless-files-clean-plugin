@@ -5,7 +5,7 @@ const path = require('path')
 const shelljs = require('shelljs')
 
 class UselessFilesCleanPlugin {
-  private opts:string = ''
+  private opts: any = {}
   constructor (options:any) {
     this.opts = options
   }
