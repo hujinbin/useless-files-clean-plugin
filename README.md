@@ -17,8 +17,8 @@ const UselessFilesCleanPlugin = require('useless-files-clean-plugin')
 module.exports = {
     plugins: [
         new UselessFilesCleanPlugin({
-            root: './',
-            output: './',
+            root: './src',
+            output: './unused-files.json',
             clean: false,
             exclude: ['*.gitignore', 'node_modules']
         })

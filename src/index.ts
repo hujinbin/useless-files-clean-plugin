@@ -1,15 +1,17 @@
 
 const fs = require('fs')
-const glob = require('glob')
+const { glob } = require('glob')
 const path = require('path')
 const shelljs = require('shelljs')
 
 class UselessFilesCleanPlugin {
   private opts: any = {}
   constructor (options:any) {
+    console.log(options)
     this.opts = options
   }
   apply (compiler:any) {
+    console.log(compiler)
     compiler.plugin('after-emit', (compilation:any, done:any)=> {
       this.findUnusedFiles(compilation, this.opts)
       done()
@@ -51,6 +53,7 @@ class UselessFilesCleanPlugin {
   }
   // 过滤忽略的文件
   dealExclude (path:any, unusedList:any) {
+    console.log(path,unusedList)
     const file = fs.readFileSync(path, 'utf-8')
     const files = JSON.parse(file) || []
     const result = unusedList.filter((unused:any) => {
@@ -59,15 +62,16 @@ class UselessFilesCleanPlugin {
     return result
   }
   // 查找需要删除的冗余文件
-  async findUnusedFiles (compilation:any, config = {root:String,clean:Boolean,output:String,exclude:Boolean}) {
-    const { root  = './src', clean = false, output = './unused-files.json', exclude = false } = config
+  async findUnusedFiles (compilation:any, config = {root:String,clean:Boolean,output:String,exclude:Array}) {
+    const { root  = './src', clean = false, output = './unused-files.json', exclude = [] } = config
+    console.log(root, clean, output)
     const pattern = root + '/**/*'
     try {
       const allChunks:any = await this.getDependFiles(compilation)
       const allFiles:any = await this.getAllFiles(pattern)
       let unUsed = allFiles
         .filter((item:any) => !~allChunks.indexOf(item))
-      if (exclude && typeof exclude === 'string') {
+      if (exclude.length > 0) {
         unUsed = this.dealExclude(exclude, unUsed)
       }
       if (typeof output === 'string') {
