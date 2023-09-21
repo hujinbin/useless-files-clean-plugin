@@ -1,18 +1,18 @@
-
+'use strict'
 const fs = require('fs')
-const { glob } = require('glob')
+const { globSync } = require('glob')
 const path = require('path')
 const shelljs = require('shelljs')
 
 class UselessFilesCleanPlugin {
   private opts: any = {}
-  constructor (options:any) {
-    console.log(options)
+  constructor (options: any = {}) {
     this.opts = options
+    console.log(this.opts)
   }
   apply (compiler:any) {
-    console.log(compiler)
     compiler.plugin('after-emit', (compilation:any, done:any)=> {
+      console.log(22222222)
       this.findUnusedFiles(compilation, this.opts)
       done()
     })
@@ -39,16 +39,12 @@ class UselessFilesCleanPlugin {
  * 获取项目目录所有的文件
  */
   getAllFiles (pattern:any) {
+    console.log("getAllFiles====")
+    console.log(pattern)
     return new Promise((resolve, reject) => {
-      glob(pattern, {
-        nodir: true
-      }, (err:any, files:any) => {
-        if (err) {
-          throw err
-        }
-        const out = files.map((item:any) => path.resolve(item))
-        resolve(out)
-      })
+      const files =  globSync(pattern)
+      const out = files.map((item:any) => path.resolve(item))
+      resolve(out)
     })
   }
   // 过滤忽略的文件
@@ -62,9 +58,9 @@ class UselessFilesCleanPlugin {
     return result
   }
   // 查找需要删除的冗余文件
-  async findUnusedFiles (compilation:any, config = {root:String,clean:Boolean,output:String,exclude:Array}) {
-    const { root  = './src', clean = false, output = './unused-files.json', exclude = [] } = config
-    console.log(root, clean, output)
+  async findUnusedFiles (compilation:any, config = {root:String,clean:Boolean,output:String,exclude:Array,ignoreFile:Array}) {
+    const { root  = './src', clean = false, output = './unused-files.json', exclude = [],ignoreFile = [] } = config
+    console.log(root, clean, output, ignoreFile)
     const pattern = root + '/**/*'
     try {
       const allChunks:any = await this.getDependFiles(compilation)
@@ -79,6 +75,7 @@ class UselessFilesCleanPlugin {
       } else if (typeof output === 'function') {
         output(unUsed)
       }
+      console.log("unUsed=====",unUsed)
       if (clean) {
         unUsed.forEach((file:any) => {
           shelljs.rm(file)

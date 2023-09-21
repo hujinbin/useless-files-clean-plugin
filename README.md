@@ -20,7 +20,8 @@ module.exports = {
             root: './src',
             output: './unused-files.json',
             clean: false,
-            exclude: ['*.gitignore', 'node_modules']
+            exclude: ['node_modules'],
+            ignoreFile: ['.md']
         })
     ]
 }
@@ -29,7 +30,8 @@ module.exports = {
 `options`
 | 名称 | 参数 |是否必填|默认值| 介绍 |
 | ---- | ---- | ---- | ---- | ---- |
-| root | string | 是 | 无 |文件根目录，查询内部所有文件，判断文件是否存在于依赖中 |
-| output | string | 是 | 无 | 输出全部文件列表、依赖文件列表、未使用文件列表的目录 |
+| root | string | 否 | ./src |文件根目录，查询内部所有文件，判断文件是否存在于依赖中 |
+| output | string | 否 | ./unused-files.json | 输出全部文件列表、依赖文件列表、未使用文件列表的目录 |
 | clean | boolean | 否 | false | 是否删除未使用文件 |
-| exclude | array | 否 | [] | 排除的文件，支持输出传入多个 minimatch 匹配模式 |
+| exclude | array | 否 | [] | 排除的文件夹 |
+| ignoreFile | array | 否 | [] | 排除的文件 |
