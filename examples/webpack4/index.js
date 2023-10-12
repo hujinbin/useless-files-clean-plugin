@@ -12,6 +12,8 @@ module.exports = {
 		path: path.join(__dirname, "dist"),
 	},
 	plugins: [
-		new UselessFilesCleanPlugin()
+		new UselessFilesCleanPlugin({
+			ignoreFile: ['.md']
+		})
 	]
 };

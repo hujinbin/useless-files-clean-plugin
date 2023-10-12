@@ -70,6 +70,14 @@ class UselessFilesCleanPlugin {
       if (exclude.length > 0) {
         unUsed = this.dealExclude(exclude, unUsed)
       }
+      console.log(unUsed)
+      // 过滤指定后缀名称
+      if(Array.isArray(ignoreFile) && ignoreFile.length >0){
+        ignoreFile.forEach((file:string)=>{
+          unUsed = unUsed.filter((path:any)=> !(path.indexOf(file) > -1 && path.indexOf(file) === (path.length - file.length)))
+        })
+      }
+      console.log(unUsed)
       if (typeof output === 'string') {
         fs.writeFileSync(output, JSON.stringify(unUsed, null, 4))
       } else if (typeof output === 'function') {
