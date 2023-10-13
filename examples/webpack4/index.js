@@ -1,4 +1,4 @@
-var path = require("path");
+const path = require("path");
 const UselessFilesCleanPlugin = require('../../lib/index')
 
 module.exports = {
