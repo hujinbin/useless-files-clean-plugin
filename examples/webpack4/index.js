@@ -13,6 +13,10 @@ module.exports = {
 	},
 	plugins: [
 		new UselessFilesCleanPlugin({
+			root: './src',
+            output: './unused-files.json',
+            clean: false,
+            exclude: ['node_modules'],
 			ignoreFile: ['.md']
 		})
 	]
