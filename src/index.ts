@@ -11,10 +11,17 @@ class UselessFilesCleanPlugin {
     this.opts = options
   }
   apply (compiler:any) {
-    compiler.plugin('after-emit', (compilation:any, done:any)=> {
-      this.findUnusedFiles(compilation, this.opts)
-      done()
-    })
+    if(compiler && compiler.plugin){
+      compiler.plugin('after-emit', (compilation:any, done:any)=> {
+        this.findUnusedFiles(compilation, this.opts)
+        done()
+      })
+    }else{
+      compiler.hooks.emit.tapAsync('GenerateAssetWebpackPlugin',(compilation:any,callback:any)=>{
+        this.findUnusedFiles(compilation, this.opts)
+        callback()
+      })
+    }
   }
 /**
  * 获取依赖的文件
