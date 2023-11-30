@@ -80,6 +80,7 @@ class UselessFilesCleanPlugin {
           unUsed = unUsed.filter((path:any)=> !(path.indexOf(file) > -1 && path.indexOf(file) === (path.length - file.length)))
         })
       }
+      console.log(output)
       if (typeof output === 'string') {
         fs.writeFileSync(output, JSON.stringify(unUsed, null, 4))
       } else if (typeof output === 'function') {
